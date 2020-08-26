@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    ports: 
+      - "3000:3000"
+    volumes: 
+      - ".:/app"
+    links: 
+      - db
+    environment: 
+      - MONGODB_URI=mongodb://db/jwt-test
+    command: "sh -c 'rm -rf node_modules && npm install && npm run dev'"
+  db:
+    image: mongo
+    ports: 
+      - "27017:27017"
+    logging:
+      driver: none

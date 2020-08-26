@@ -1,12 +1,11 @@
 const express = require("express");
-const app = express();
-
 const morgan = require("morgan");
-
 const config = require("./config");
 
+const app = express();
+
 // settings
-app.set("port", process.env.PORT || 3000);
+app.set("port", config.port);
 app.set("superSecret", config.secret);
 
 app.use(morgan("dev"));
